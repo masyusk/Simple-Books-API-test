@@ -1,0 +1,25 @@
+Test Report: Simple Books API
+
+Testing endpoints:
+
+GET /status
+GET /books
+GET /books/:bookId
+POST /api-clients
+POST /orders
+GET /orders
+GET /orders/:orderId
+PATCH /orders/:orderId
+DELETE /orders/:orderId
+
+
+Focus areas:
+
+Functional correctness
+Input validation
+Response structure
+Performance
+
+Environment
+Tool: Postman
+API Base URL: https://simple-books-api.click
