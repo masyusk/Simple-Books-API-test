@@ -1,26 +1,39 @@
-TC_BOOKS_001 – Check the API status
+TC_BOOKS_001 – Check API status
 
 Description:
-Verify that the API returns a valid list of books.
+Verify that the API status endpoint is reachable and returns a successful response.
 
 Request:
 GET /status
 
-Validations:
+Expected result:
 
-Status code is 200
+Status code: 200
 Response time < 500ms
+Response body confirms that API is operational (status: OK)
 
 Actual Result:
-All conditions satisfied. Response returned status 200 OK.
+
+Status code: 200
+Response time < 500ms
+Response body:
+    {
+        "status": "OK"
+    }
 
 Status: ✅ Pass
 
-Scripts (JS):
+Test scripts (Postman):
 pm.test("Status code is 200", function () {
     pm.response.to.have.status(200);
 });
 
 pm.test("Response time is less than 500ms", function () {
     pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+let jsonData = pm.response.json();
+
+pm.test("Status is OK", function () {
+    pm.expect(jsonData.status).to.eql("OK");
 });
