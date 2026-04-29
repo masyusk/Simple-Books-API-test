@@ -1,0 +1,26 @@
+TC_BOOKS_001 – Check the API status
+
+Description:
+Verify that the API returns a valid list of books.
+
+Request:
+GET /status
+
+Validations:
+
+Status code is 200
+Response time < 500ms
+
+Actual Result:
+All conditions satisfied. Response returned status 200 OK.
+
+Status: ✅ Pass
+
+Scripts (JS):
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response time is less than 500ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});
