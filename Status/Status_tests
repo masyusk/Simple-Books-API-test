@@ -1,4 +1,4 @@
-TC_BOOKS_001 – Check API status
+TC_SBOOKS_001 – Check API status
 
 Description:
 Verify that the API status endpoint is reachable and returns a successful response.
