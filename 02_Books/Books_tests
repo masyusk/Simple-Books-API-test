@@ -1,1 +1,103 @@
+TC_BOOKS_001 – Retrieve list of books
 
+Description:
+  Verify that the API returns a valid list of books
+
+Request:
+GET /books
+
+Expected result:
+
+  Status code: 200
+  Response time < 500ms
+  Response is an array
+  Array is not empty
+  Each object contains:
+		id
+    name
+    type
+    available
+
+Actual Result:
+
+All conditions satisfied. Response returned valid book list.
+
+Status: Pass
+
+
+TC_BOOKS_002 - Validate limit parameter (invalid values)
+
+Case: limit = 0
+Request: GET /books?limit=0
+
+Expected result:
+
+	Status code: 400
+	Error message for invalid input
+
+Actual Result:
+
+Status code: 400 Bad Request
+
+{
+    "error": "Invalid value for query parameter 'limit'. Must be greater than 0."
+}
+
+Status: Pass
+
+Case: limit = negative value
+Request: GET /books?limit=-1
+
+Expected result:
+
+Status code: 400
+Error message for invalid input
+
+Actual Result:
+
+Status code: 400 Bad Request
+
+{
+    "error": "Invalid value for query parameter 'limit'. Must be greater than 0."
+}
+
+Status: Pass
+
+TC_BOOKS_003 - Validate type parameter (invalid value)
+
+Request: GET /books?type=none
+
+Expected result:
+
+Status code: 400
+Error message for invalid input, listing valid values
+
+Actual Result:
+
+Status code: 400 Bad Request
+
+{
+    "error": "Invalid value for query parameter 'type'. Must be one of: fiction, non-fiction."
+}
+
+Status: Pass
+
+
+
+
+
+
+Test scripts (Postman):
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response time is less than 500ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+let jsonData = pm.response.json();
+
+pm.test("Status is OK", function () {
+    pm.expect(jsonData.status).to.eql("OK");
+});
