@@ -13,7 +13,7 @@ Expected result:
   Response is an array
   Array is not empty
   Each object contains:
-		id
+	id
     name
     type
     available
